@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns="http://www.owl-ontologies.com/Ontology1399962749.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xml:base="http://www.owl-ontologies.com/Ontology1399962749.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="Destination">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Place"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="StackCranes"/>
+  <owl:Class rdf:ID="Gate"/>
+  <owl:Class rdf:ID="Transport"/>
+  <owl:Class rdf:ID="Trains">
+    <rdfs:subClassOf rdf:resource="#Transport"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Cargo"/>
+  <owl:Class rdf:ID="Sail"/>
+  <owl:Class rdf:ID="ShipType"/>
+  <owl:Class rdf:ID="Exporters">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Exporters-Importers"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Ships">
+    <rdfs:subClassOf rdf:resource="#ShipType"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Tugs">
+    <rdfs:subClassOf rdf:resource="#ShipType"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Terminal"/>
+  <owl:Class rdf:ID="Start">
+    <rdfs:subClassOf rdf:resource="#Place"/>
+  </owl:Class>
+  <owl:Class rdf:ID="MakeWay"/>
+  <owl:Class rdf:ID="SecurityStaff"/>
+  <owl:Class rdf:ID="QuaySideCrane"/>
+  <owl:Class rdf:ID="StackingArea"/>
+  <owl:Class rdf:ID="Importers">
+    <rdfs:subClassOf rdf:resource="#Exporters-Importers"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Port"/>
+  <owl:Class rdf:ID="Lorries">
+    <rdfs:subClassOf rdf:resource="#Transport"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Anchorage_Area">
+    <rdfs:subClassOf rdf:resource="#Destination"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="enters">
+    <rdfs:range rdf:resource="#Gate"/>
+    <rdfs:domain rdf:resource="#Transport"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="import">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Importers"/>
+          <owl:Class rdf:about="#Cargo"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain rdf:resource="#Transport"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="export">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Cargo"/>
+          <owl:Class rdf:about="#Exporters"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain rdf:resource="#Transport"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="Reaches">
+    <rdfs:range rdf:resource="#Anchorage_Area"/>
+    <rdfs:domain rdf:resource="#Sail"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="allowToGo">
+    <rdfs:domain rdf:resource="#SecurityStaff"/>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Gate"/>
+          <owl:Class rdf:about="#Port"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="exit">
+    <rdfs:domain rdf:resource="#Transport"/>
+    <rdfs:range rdf:resource="#Gate"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="liftStack">
+    <rdfs:range rdf:resource="#StackingArea"/>
+    <rdfs:domain rdf:resource="#StackCranes"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="load">
+    <rdfs:domain rdf:resource="#QuaySideCrane"/>
+    <rdfs:range rdf:resource="#Terminal"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="placeStack">
+    <rdfs:range rdf:resource="#StackingArea"/>
+    <rdfs:domain rdf:resource="#StackCranes"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="discharge">
+    <rdfs:range rdf:resource="#Terminal"/>
+    <rdfs:domain rdf:resource="#QuaySideCrane"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="placePortCargo">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#StackCranes"/>
+          <owl:Class rdf:about="#QuaySideCrane"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Port"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="LeaveTerminal">
+    <rdfs:domain rdf:resource="#Sail"/>
+    <rdfs:range rdf:resource="#MakeWay"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="tiedWithLines">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Tugs"/>
+          <owl:Class rdf:about="#Anchorage_Area"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain rdf:resource="#Sail"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="liftPortCargo">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#StackCranes"/>
+          <owl:Class rdf:about="#QuaySideCrane"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Port"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="startSailing">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Ships"/>
+          <owl:Class rdf:about="#Start"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain rdf:resource="#Sail"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="Berth">
+    <rdfs:range rdf:resource="#Terminal"/>
+    <rdfs:domain rdf:resource="#Sail"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="dutyOn">
+    <rdfs:range rdf:resource="#Gate"/>
+    <rdfs:domain rdf:resource="#SecurityStaff"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="checksCargo">
+    <rdfs:domain rdf:resource="#SecurityStaff"/>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Port"/>
+          <owl:Class rdf:about="#Gate"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+  </owl:ObjectProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4, Build 126)  http://protege.stanford.edu -->

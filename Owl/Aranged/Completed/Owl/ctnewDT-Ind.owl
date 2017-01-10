@@ -1,0 +1,1640 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:temporal="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#"
+    xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+    xmlns:swrlxml="http://swrl.stanford.edu/ontologies/built-ins/3.4/swrlxml.owl#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlx="http://swrl.stanford.edu/ontologies/built-ins/3.3/swrlx.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:swrlm="http://swrl.stanford.edu/ontologies/built-ins/3.4/swrlm.owl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns="http://www.owl-ontologies.com/Ontology1399962749.owl#"
+    xmlns:abox="http://swrl.stanford.edu/ontologies/built-ins/3.3/abox.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:sqwrl="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#"
+    xmlns:tbox="http://swrl.stanford.edu/ontologies/built-ins/3.3/tbox.owl#"
+  xml:base="http://www.owl-ontologies.com/Ontology1399962749.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl"/>
+    <owl:imports rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.4/swrlxml.owl"/>
+    <owl:imports rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl"/>
+    <owl:imports rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/abox.owl"/>
+    <owl:imports rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/tbox.owl"/>
+    <owl:imports rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.4/swrlm.owl"/>
+    <owl:imports rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/swrlx.owl"/>
+    <owl:imports rdf:resource="http://swrl.stanford.edu/ontologies/3.3/swrla.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="Destination">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Place"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="StackCranes"/>
+  <owl:Class rdf:ID="Transport"/>
+  <owl:Class rdf:ID="Gate"/>
+  <owl:Class rdf:ID="Trains">
+    <rdfs:subClassOf rdf:resource="#Transport"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Cargo"/>
+  <owl:Class rdf:ID="Sail"/>
+  <owl:Class rdf:ID="ShipType"/>
+  <owl:Class rdf:ID="Exporters">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Exporters-Importers"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Ships">
+    <rdfs:subClassOf rdf:resource="#ShipType"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Tugs">
+    <rdfs:subClassOf rdf:resource="#ShipType"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Terminal"/>
+  <owl:Class rdf:ID="Start">
+    <rdfs:subClassOf rdf:resource="#Place"/>
+  </owl:Class>
+  <owl:Class rdf:ID="MakeWay"/>
+  <owl:Class rdf:ID="SecurityStaff"/>
+  <owl:Class rdf:ID="QuaySideCrane"/>
+  <owl:Class rdf:ID="StackingArea"/>
+  <owl:Class rdf:ID="Port"/>
+  <owl:Class rdf:ID="Importers">
+    <rdfs:subClassOf rdf:resource="#Exporters-Importers"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Lorries">
+    <rdfs:subClassOf rdf:resource="#Transport"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Anchorage_Area">
+    <rdfs:subClassOf rdf:resource="#Destination"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="enters">
+    <rdfs:domain rdf:resource="#Transport"/>
+    <rdfs:range rdf:resource="#Gate"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="import">
+    <rdfs:domain rdf:resource="#Transport"/>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Importers"/>
+          <owl:Class rdf:about="#Cargo"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="Reaches">
+    <rdfs:domain rdf:resource="#Sail"/>
+    <rdfs:range rdf:resource="#Anchorage_Area"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="export">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Cargo"/>
+          <owl:Class rdf:about="#Exporters"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain rdf:resource="#Transport"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="allowToGo">
+    <rdfs:domain rdf:resource="#SecurityStaff"/>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Gate"/>
+          <owl:Class rdf:about="#Port"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="liftStack">
+    <rdfs:range rdf:resource="#StackingArea"/>
+    <rdfs:domain rdf:resource="#StackCranes"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="exit">
+    <rdfs:range rdf:resource="#Gate"/>
+    <rdfs:domain rdf:resource="#Transport"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="load">
+    <rdfs:range rdf:resource="#Terminal"/>
+    <rdfs:domain rdf:resource="#QuaySideCrane"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="placeStack">
+    <rdfs:range rdf:resource="#StackingArea"/>
+    <rdfs:domain rdf:resource="#StackCranes"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="discharge">
+    <rdfs:range rdf:resource="#Terminal"/>
+    <rdfs:domain rdf:resource="#QuaySideCrane"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="placePortCargo">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#StackCranes"/>
+          <owl:Class rdf:about="#QuaySideCrane"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Port"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="LeaveTerminal">
+    <rdfs:range rdf:resource="#MakeWay"/>
+    <rdfs:domain rdf:resource="#Sail"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="tiedWithLines">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Tugs"/>
+          <owl:Class rdf:about="#Anchorage_Area"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain rdf:resource="#Sail"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="liftPortCargo">
+    <rdfs:range rdf:resource="#Port"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#StackCranes"/>
+          <owl:Class rdf:about="#QuaySideCrane"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="startSailing">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Ships"/>
+          <owl:Class rdf:about="#Start"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain rdf:resource="#Sail"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="Berth">
+    <rdfs:domain rdf:resource="#Sail"/>
+    <rdfs:range rdf:resource="#Terminal"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="dutyOn">
+    <rdfs:domain rdf:resource="#SecurityStaff"/>
+    <rdfs:range rdf:resource="#Gate"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="checksCargo">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Port"/>
+          <owl:Class rdf:about="#Gate"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain rdf:resource="#SecurityStaff"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:ID="Cargos">
+    <rdfs:domain rdf:resource="#Cargo"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Importer">
+    <rdfs:domain rdf:resource="#Importers"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Starts">
+    <rdfs:domain rdf:resource="#Start"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="ExportPlan">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Ships"/>
+          <owl:Class rdf:about="#Exporters"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Tug">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Tugs"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Staff">
+    <rdfs:domain rdf:resource="#SecurityStaff"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="ShipName">
+    <rdfs:domain rdf:resource="#Ships"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="TransCargo">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Transport"/>
+          <owl:Class rdf:about="#Cargo"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Area">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#StackingArea"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Terminals">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Terminal"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="CargoPlan">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Ships"/>
+          <owl:Class rdf:about="#Cargo"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="ShipStart">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Ships"/>
+          <owl:Class rdf:about="#Start"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="ShipTug">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Ships"/>
+          <owl:Class rdf:about="#Tugs"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="ShipTypes">
+    <rdfs:domain rdf:resource="#Ships"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="CraneCargo">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#QuaySideCrane"/>
+          <owl:Class rdf:about="#StackCranes"/>
+          <owl:Class rdf:about="#Cargo"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Transports">
+    <rdfs:domain rdf:resource="#Transport"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Ship">
+    <rdfs:domain rdf:resource="#Ships"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="ShipTerminal">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Ships"/>
+          <owl:Class rdf:about="#Terminal"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Exporter">
+    <rdfs:domain rdf:resource="#Exporters"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Crane">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#QuaySideCrane"/>
+          <owl:Class rdf:about="#StackCranes"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:DatatypeProperty>
+  <rdf:List>
+    <rdf:first>
+      <swrl:Variable rdf:ID="c"/>
+    </rdf:first>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first>
+      <swrl:Variable rdf:ID="t"/>
+    </rdf:first>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#t"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first>
+      <swrl:Variable rdf:ID="T"/>
+    </rdf:first>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#t"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <Terminal rdf:ID="Terminal_1">
+    <Terminals rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >M</Terminals>
+  </Terminal>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <Start rdf:ID="Voyage7">
+    <Starts rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >527E</Starts>
+  </Start>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#t"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <Ships rdf:ID="Hyundai_General">
+    <CargoPlan rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >292</CargoPlan>
+    <ShipStart rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >038E</ShipStart>
+    <ShipTypes rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >F</ShipTypes>
+    <ExportPlan rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >121</ExportPlan>
+    <ShipName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hyundai General</ShipName>
+  </Ships>
+  <Start rdf:ID="Voyage5">
+    <Starts rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >177</Starts>
+  </Start>
+  <Ships rdf:ID="OOCL_Newyork">
+    <ExportPlan rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >460</ExportPlan>
+    <CargoPlan rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >245</CargoPlan>
+    <ShipName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OOCl NewYork</ShipName>
+    <ShipTypes rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >F</ShipTypes>
+    <ShipStart rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >527E</ShipStart>
+  </Ships>
+  <rdf:List>
+    <rdf:first rdf:resource="#t"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <Importers rdf:ID="IMP1"/>
+  <Transport rdf:ID="Truck">
+    <Transports rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></Transports>
+  </Transport>
+  <Transport rdf:ID="inTransport">
+    <Transports rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></Transports>
+  </Transport>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#t"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#t"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#t"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <Start rdf:ID="Voyage2">
+    <Starts rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >022E</Starts>
+  </Start>
+  <Ships rdf:ID="Sagamore">
+    <ShipName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></ShipName>
+    <ShipStart rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></ShipStart>
+    <ShipTypes rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></ShipTypes>
+    <ExportPlan rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></ExportPlan>
+    <CargoPlan rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></CargoPlan>
+  </Ships>
+  <Ships rdf:ID="Hyundai_Bangkok">
+    <ShipStart rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >022E</ShipStart>
+    <ShipTypes rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >F</ShipTypes>
+    <CargoPlan rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >232</CargoPlan>
+    <ShipName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hyundai Bangkok</ShipName>
+    <ExportPlan rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >344</ExportPlan>
+  </Ships>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#T"/>
+  </rdf:List>
+  <swrl:Imp rdf:ID="Rule-2">
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:BuiltinAtom>
+            <swrl:arguments>
+              <rdf:List>
+                <rdf:rest>
+                  <rdf:List>
+                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Truck</rdf:first>
+                  </rdf:List>
+                </rdf:rest>
+                <rdf:first rdf:resource="#t"/>
+              </rdf:List>
+            </swrl:arguments>
+            <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/abox.owl#setValue"/>
+          </swrl:BuiltinAtom>
+        </rdf:first>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            <rdf:first>
+              <swrl:BuiltinAtom>
+                <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/abox.owl#setValue"/>
+                <swrl:arguments>
+                  <rdf:List>
+                    <rdf:first rdf:resource="#c"/>
+                    <rdf:rest>
+                      <rdf:List>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Imp1</rdf:first>
+                      </rdf:List>
+                    </rdf:rest>
+                  </rdf:List>
+                </swrl:arguments>
+              </swrl:BuiltinAtom>
+            </rdf:first>
+          </swrl:AtomList>
+        </rdf:rest>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:ClassAtom>
+            <swrl:classPredicate rdf:resource="#Cargo"/>
+            <swrl:argument1 rdf:resource="#c"/>
+          </swrl:ClassAtom>
+        </rdf:first>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:rest>
+                  <swrl:AtomList>
+                    <rdf:first>
+                      <swrl:BuiltinAtom>
+                        <swrl:arguments>
+                          <rdf:List>
+                            <rdf:first rdf:resource="#c"/>
+                            <rdf:rest>
+                              <rdf:List>
+                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                >Imp1</rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                              </rdf:List>
+                            </rdf:rest>
+                          </rdf:List>
+                        </swrl:arguments>
+                        <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#equal"/>
+                      </swrl:BuiltinAtom>
+                    </rdf:first>
+                    <rdf:rest>
+                      <swrl:AtomList>
+                        <rdf:first>
+                          <swrl:BuiltinAtom>
+                            <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#equal"/>
+                            <swrl:arguments>
+                              <rdf:List>
+                                <rdf:first rdf:resource="#t"/>
+                                <rdf:rest>
+                                  <rdf:List>
+                                    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                    >Truck</rdf:first>
+                                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                  </rdf:List>
+                                </rdf:rest>
+                              </rdf:List>
+                            </swrl:arguments>
+                          </swrl:BuiltinAtom>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                      </swrl:AtomList>
+                    </rdf:rest>
+                  </swrl:AtomList>
+                </rdf:rest>
+                <rdf:first>
+                  <swrl:IndividualPropertyAtom>
+                    <swrl:argument1 rdf:resource="#t"/>
+                    <swrl:propertyPredicate rdf:resource="#allowToGo"/>
+                    <swrl:argument2 rdf:resource="#c"/>
+                  </swrl:IndividualPropertyAtom>
+                </rdf:first>
+              </swrl:AtomList>
+            </rdf:rest>
+            <rdf:first>
+              <swrl:ClassAtom>
+                <swrl:classPredicate rdf:resource="#Transport"/>
+                <swrl:argument1 rdf:resource="#t"/>
+              </swrl:ClassAtom>
+            </rdf:first>
+          </swrl:AtomList>
+        </rdf:rest>
+      </swrl:AtomList>
+    </swrl:body>
+  </swrl:Imp>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#T"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#t"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#T"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#t"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <Ships rdf:ID="Hyundai_confidence">
+    <ExportPlan rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >14173</ExportPlan>
+    <ShipTypes rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >M</ShipTypes>
+    <CargoPlan rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >9916</CargoPlan>
+    <ShipName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hyundai Confidence</ShipName>
+    <ShipStart rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >045E</ShipStart>
+  </Ships>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#t"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#t"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#t"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <QuaySideCrane rdf:ID="QuayCrane">
+    <Crane rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >0</Crane>
+  </QuaySideCrane>
+  <rdf:List>
+    <rdf:first rdf:resource="#t"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#T"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#t"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <Start rdf:ID="Voyage4">
+    <Starts rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >045E</Starts>
+  </Start>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#t"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <Tugs rdf:ID="tug">
+    <Tug rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >TUG</Tug>
+  </Tugs>
+  <Ships rdf:ID="Northern_Power">
+    <ShipStart rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >440</ShipStart>
+    <ShipTypes rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >F</ShipTypes>
+    <CargoPlan rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >250</CargoPlan>
+    <ExportPlan rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >310</ExportPlan>
+    <ShipName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Northern Power</ShipName>
+  </Ships>
+  <Ships rdf:ID="APL_Sydeny">
+    <ShipTypes rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >M</ShipTypes>
+    <ShipName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >APL Sudeny</ShipName>
+    <CargoPlan rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >6910</CargoPlan>
+    <ExportPlan rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1413</ExportPlan>
+    <ShipStart rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >004E</ShipStart>
+  </Ships>
+  <SecurityStaff rdf:ID="Staffs">
+    <Staff rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >0</Staff>
+  </SecurityStaff>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <Exporters rdf:ID="Exporters_29"/>
+  <Terminal rdf:ID="Terminal_2">
+    <Terminals rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >F</Terminals>
+  </Terminal>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <Ships rdf:ID="Northen_Prelude">
+    <ShipName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Northen Prelude</ShipName>
+    <CargoPlan rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >7032</CargoPlan>
+    <ExportPlan rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >5652</ExportPlan>
+    <ShipTypes rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >M</ShipTypes>
+    <ShipStart rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >177</ShipStart>
+  </Ships>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#t"/>
+  </rdf:List>
+  <Start rdf:ID="Voyage1">
+    <Starts rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >004E</Starts>
+  </Start>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#t"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#t"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#t"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <swrl:Imp rdf:ID="Rule-1">
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:ClassAtom>
+            <swrl:classPredicate rdf:resource="#Cargo"/>
+            <swrl:argument1 rdf:resource="#c"/>
+          </swrl:ClassAtom>
+        </rdf:first>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:first>
+                  <swrl:IndividualPropertyAtom>
+                    <swrl:propertyPredicate rdf:resource="#checksCargo"/>
+                    <swrl:argument1 rdf:resource="#t"/>
+                    <swrl:argument2 rdf:resource="#c"/>
+                  </swrl:IndividualPropertyAtom>
+                </rdf:first>
+                <rdf:rest>
+                  <swrl:AtomList>
+                    <rdf:first>
+                      <swrl:BuiltinAtom>
+                        <swrl:arguments>
+                          <rdf:List>
+                            <rdf:first rdf:resource="#c"/>
+                            <rdf:rest>
+                              <rdf:List>
+                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                >Exp1</rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                              </rdf:List>
+                            </rdf:rest>
+                          </rdf:List>
+                        </swrl:arguments>
+                        <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#equal"/>
+                      </swrl:BuiltinAtom>
+                    </rdf:first>
+                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                  </swrl:AtomList>
+                </rdf:rest>
+              </swrl:AtomList>
+            </rdf:rest>
+            <rdf:first>
+              <swrl:ClassAtom>
+                <swrl:argument1 rdf:resource="#t"/>
+                <swrl:classPredicate rdf:resource="#Transport"/>
+              </swrl:ClassAtom>
+            </rdf:first>
+          </swrl:AtomList>
+        </rdf:rest>
+      </swrl:AtomList>
+    </swrl:body>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            <rdf:first>
+              <swrl:BuiltinAtom>
+                <swrl:arguments>
+                  <rdf:List>
+                    <rdf:first rdf:resource="#c"/>
+                    <rdf:rest>
+                      <rdf:List>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Exp1</rdf:first>
+                      </rdf:List>
+                    </rdf:rest>
+                  </rdf:List>
+                </swrl:arguments>
+                <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/abox.owl#setValue"/>
+              </swrl:BuiltinAtom>
+            </rdf:first>
+          </swrl:AtomList>
+        </rdf:rest>
+        <rdf:first>
+          <swrl:BuiltinAtom>
+            <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/abox.owl#setValue"/>
+            <swrl:arguments>
+              <rdf:List>
+                <rdf:first rdf:resource="#t"/>
+                <rdf:rest>
+                  <rdf:List>
+                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Truck</rdf:first>
+                  </rdf:List>
+                </rdf:rest>
+              </rdf:List>
+            </swrl:arguments>
+          </swrl:BuiltinAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+  </swrl:Imp>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <Anchorage_Area rdf:ID="KPT_Anchorage"/>
+  <Start rdf:ID="Voyage6">
+    <Starts rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >440</Starts>
+  </Start>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >TR</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#T"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#t"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#T"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#t"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#t"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#t"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#t"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#t"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#t"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <Terminal rdf:ID="Terminal_3">
+    <Terminals rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >F</Terminals>
+  </Terminal>
+  <StackingArea rdf:ID="Available_Area">
+    <Area rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >0</Area>
+  </StackingArea>
+  <Start rdf:ID="Voyage3">
+    <Starts rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >038E</Starts>
+  </Start>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#t"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Truck</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#t"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+      </rdf:List>
+    </rdf:rest>
+    <rdf:first rdf:resource="#c"/>
+  </rdf:List>
+  <rdf:List>
+    <rdf:first rdf:resource="#c"/>
+    <rdf:rest>
+      <rdf:List>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Imp1</rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </rdf:List>
+    </rdf:rest>
+  </rdf:List>
+  <Start rdf:ID="Voyage8">
+    <Starts rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></Starts>
+  </Start>
+  <StackCranes rdf:ID="Cranes">
+    <Crane rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >39</Crane>
+  </StackCranes>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4, Build 126)  http://protege.stanford.edu -->

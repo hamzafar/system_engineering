@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://www.owl-ontologies.com/Ontology1398747697.owl#"
+  xml:base="http://www.owl-ontologies.com/Ontology1398747697.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="ShipType"/>
+  <owl:Class rdf:ID="Place"/>
+  <owl:Class rdf:ID="Trains">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Transport"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="WireRopes">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Lines"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="StackCranes"/>
+  <owl:Class rdf:ID="Tugs">
+    <rdfs:subClassOf rdf:resource="#ShipType"/>
+  </owl:Class>
+  <owl:Class rdf:ID="QuaySideCranes"/>
+  <owl:Class rdf:ID="Port"/>
+  <owl:Class rdf:ID="NilonRopes">
+    <rdfs:subClassOf rdf:resource="#Lines"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Terminal">
+    <rdfs:subClassOf rdf:resource="#Port"/>
+  </owl:Class>
+  <owl:Class rdf:ID="StackingArea"/>
+  <owl:Class rdf:ID="Importers">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Exporter-Importer"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Destination">
+    <rdfs:subClassOf rdf:resource="#Place"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Ship">
+    <rdfs:subClassOf rdf:resource="#ShipType"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Gate"/>
+  <owl:Class rdf:ID="Exporter">
+    <rdfs:subClassOf rdf:resource="#Exporter-Importer"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Lorries">
+    <rdfs:subClassOf rdf:resource="#Transport"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SecuityStaff"/>
+  <owl:Class rdf:ID="Anchorage">
+    <rdfs:subClassOf rdf:resource="#Destination"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Cargo"/>
+  <owl:Class rdf:ID="Start">
+    <rdfs:subClassOf rdf:resource="#Place"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="dischargeShip">
+    <rdfs:domain rdf:resource="#QuaySideCranes"/>
+    <rdfs:range rdf:resource="#Terminal"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="startSailing">
+    <rdfs:range rdf:resource="#Start"/>
+    <rdfs:domain rdf:resource="#Ship"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="liftTransport">
+    <rdfs:range rdf:resource="#Cargo"/>
+    <rdfs:domain rdf:resource="#StackCranes"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="placeTransport">
+    <rdfs:domain rdf:resource="#StackCranes"/>
+    <rdfs:range rdf:resource="#Cargo"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="atAnchorageTied">
+    <rdfs:range rdf:resource="#NilonRopes"/>
+    <rdfs:domain rdf:resource="#Ship"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="arrives">
+    <rdfs:domain rdf:resource="#Ship"/>
+    <rdfs:range rdf:resource="#Anchorage"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="check">
+    <rdfs:range rdf:resource="#Cargo"/>
+    <rdfs:domain rdf:resource="#SecuityStaff"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="takesCargo">
+    <rdfs:domain rdf:resource="#Transport"/>
+    <rdfs:range rdf:resource="#Exporter"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="liftStack">
+    <rdfs:range rdf:resource="#StackingArea"/>
+    <rdfs:domain rdf:resource="#StackCranes"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="DischargeTransport">
+    <rdfs:range rdf:resource="#Cargo"/>
+    <rdfs:domain rdf:resource="#QuaySideCranes"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="Berth">
+    <rdfs:domain rdf:resource="#Ship"/>
+    <rdfs:range rdf:resource="#Terminal"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isTiedTo">
+    <rdfs:domain rdf:resource="#Tugs"/>
+    <rdfs:range rdf:resource="#NilonRopes"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="LoadShip">
+    <rdfs:domain rdf:resource="#QuaySideCranes"/>
+    <rdfs:range rdf:resource="#Terminal"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="givesCargo">
+    <rdfs:domain rdf:resource="#Transport"/>
+    <rdfs:range rdf:resource="#Importers"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="LoadTransport">
+    <rdfs:domain rdf:resource="#QuaySideCranes"/>
+    <rdfs:range rdf:resource="#Cargo"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasCargo">
+    <rdfs:range rdf:resource="#Cargo"/>
+    <rdfs:domain rdf:resource="#Transport"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="existsThrough">
+    <rdfs:range rdf:resource="#Gate"/>
+    <rdfs:domain rdf:resource="#Transport"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="placeStack">
+    <rdfs:domain rdf:resource="#StackCranes"/>
+    <rdfs:range rdf:resource="#StackingArea"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="dutyAt">
+    <rdfs:range rdf:resource="#Gate"/>
+    <rdfs:domain rdf:resource="#SecuityStaff"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="entersThrough">
+    <rdfs:domain rdf:resource="#Transport"/>
+    <rdfs:range rdf:resource="#Gate"/>
+  </owl:ObjectProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4, Build 126)  http://protege.stanford.edu -->
