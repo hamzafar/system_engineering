@@ -7,6 +7,8 @@ We will construct a model that will show how containers are shipped by Container
 
 The following figure explains the big picture of container shipment and Container Terminal process:-
 
+<img src = https://github.com/hamzafar/system_engineering/blob/master/Owl/Container%20Terminal.PNG?raw=true>
+
 The Cargo is transferred form one destination to other destination. The Cheapest way to transfer Cargo is from sea. In early nineteen’s the Cargo was transferred from one destination to other in bulk or bag form. As the trade increases the time become most important factor to manage. So, there came need for Containers that all Cargo must be packed in Containers and transferred from one destination to other.
 
 The cargo to container terminal is two way process. In one step the Cargo in Container comes to Container terminal via Turks or Trains. Here at gate; the verification of Containers is done. The verification includes the destination of container, cargo type it contains. The unique id is assigned to the container and it is stacked in the stacking area.
