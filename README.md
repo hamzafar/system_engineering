@@ -19,3 +19,8 @@ One important thing that is kept in mind during loading and unloading; the even 
 
 Since hundreds of containers are imported and exported per day, so there is need for Container Terminal Management. The following papers will be study for container terminal management and the model in cpn-tool will be build. And through ontology we will try to construct scheduling of container terminal:
 - A Review of Decision Support Systems in Container Terminal Operations
+- Market Driven Control in Container Terminal Management
+- Evaluating Container Terminal Transshipment Operational Policies:An Agent-Based Simulation Approach
+- A Market Based Approach to Container Port Terminal Management
+- Prospects for Short Sea Shipping
+- Using Simulation in Berth Planning at a Container Terminal
