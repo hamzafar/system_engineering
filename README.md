@@ -26,3 +26,8 @@ Since hundreds of containers are imported and exported per day, so there is need
 - A Market Based Approach to Container Port Terminal Management
 - Prospects for Short Sea Shipping
 - Using Simulation in Berth Planning at a Container Terminal
+
+## Ontology:
+The ontology of Container System Terminal system can be found as:
+https://github.com/hamzafar/system_engineering/blob/master/Ontology.pdf
+
