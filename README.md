@@ -7,7 +7,7 @@ We will construct a model that will show how containers are shipped by Container
 
 The following figure explains the big picture of container shipment and Container Terminal process:-
 
-<img src = https://github.com/hamzafar/system_engineering/blob/master/Owl/Container%20Terminal.PNG?raw=true>
+![alt text](https://raw.githubusercontent.com/hamzafar/system_engineering/master/Owl/Container%20Terminal.PNG "Container Terminal")
 
 The Cargo is transferred form one destination to other destination. The Cheapest way to transfer Cargo is from sea. In early nineteen’s the Cargo was transferred from one destination to other in bulk or bag form. As the trade increases the time become most important factor to manage. So, there came need for Containers that all Cargo must be packed in Containers and transferred from one destination to other.
 
